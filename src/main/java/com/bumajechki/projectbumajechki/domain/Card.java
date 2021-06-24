@@ -1,17 +1,24 @@
 package com.bumajechki.projectbumajechki.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Card {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String frontSide;
-    private String backSide;
+    private Pack pack;
+    private String frontSideText;
+    private String backSideText;
+
+    @ManyToOne
+    public Pack getPack() {
+        return pack;
+    }
+
+    public void setPack(Pack pack) {
+        this.pack = pack;
+    }
 
     public Long getId() {
         return id;
@@ -21,19 +28,19 @@ public class Card {
         this.id = id;
     }
 
-    public String getFrontSide() {
-        return frontSide;
+    public String getFrontSideText() {
+        return frontSideText;
     }
 
-    public void setFrontSide(String frontSide) {
-        this.frontSide = frontSide;
+    public void setFrontSideText(String frontSide) {
+        this.frontSideText = frontSide;
     }
 
-    public String getBackSide() {
-        return backSide;
+    public String getBackSideText() {
+        return backSideText;
     }
 
-    public void setBackSide(String backSide) {
-        this.backSide = backSide;
+    public void setBackSideText(String backSide) {
+        this.backSideText = backSide;
     }
 }
