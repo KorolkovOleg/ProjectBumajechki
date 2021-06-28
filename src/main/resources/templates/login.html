@@ -2,6 +2,18 @@
 <html xmlns:th="http://thimeleaf.org">
 <head>
     <title>login</title>
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#createAccount").click(function () {
+                window.location.href = "/register";
+            });
+        });
+    </script>
 </head>
 <body>
 <form action="" method="post">
@@ -9,10 +21,10 @@
     <fieldset>
         <legend>Please login</legend>
         <div th:if="${param.error != null}">
-                Failed to login.
-                <div th:if="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-                    Reason:
-                    <span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+            Failed to login.
+            <div th:if="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+                Reason:
+                <span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
             </div>
         </div>
         <div th:if="${param.logout != null}">
@@ -28,6 +40,7 @@
         </p>
         <div>
             <button type="submit" class="btn">Log in</button>
+            <button type="button" class="btn" id="createAccount">Register</button>
         </div>
     </fieldset>
 </form>
