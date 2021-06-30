@@ -14,6 +14,7 @@ public class User {
     private Long id;
     private String username;
     private String password;
+
     private Set<Authority> authorities = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")

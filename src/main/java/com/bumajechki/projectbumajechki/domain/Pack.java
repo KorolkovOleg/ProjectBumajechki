@@ -2,21 +2,33 @@ package com.bumajechki.projectbumajechki.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Pack implements Serializable {
 
     private static final long serialVersionUID = 3525820245943152866L;
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String name;
 
-    public long getId() {
+    private Long id;
+    private String name;
+    private Set<Card> cards = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pack")
+    public Set<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
+    }
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
