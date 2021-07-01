@@ -14,6 +14,16 @@ public class Pack implements Serializable {
     private Long id;
     private String name;
     private Set<Card> cards = new HashSet<>();
+    private Set<User> users = new HashSet<>();
+
+    @ManyToMany(mappedBy = "packs")
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pack")
     public Set<Card> getCards() {

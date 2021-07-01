@@ -14,8 +14,20 @@ public class User {
     private Long id;
     private String username;
     private String password;
-
     private Set<Authority> authorities = new HashSet<>();
+    private Set<Pack> packs = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "user_packs",
+                joinColumns = @JoinColumn(name = "USER_ID"),
+                inverseJoinColumns = @JoinColumn(name = "PACK_ID"))
+    public Set<Pack> getPacks() {
+        return packs;
+    }
+
+    public void setPacks(Set<Pack> packs) {
+        this.packs = packs;
+    }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     public Set<Authority> getAuthorities() {
